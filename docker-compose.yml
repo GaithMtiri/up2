@@ -19,23 +19,23 @@ services:
             DB_USER: postgres
             DB_PASSWORD: 12345
             GET_HOSTS_FROM: dns
-        depends_on:
-            - db
+        # depends_on:
+        #     - db
         labels:
             kompose.service.type: LoadBalancer 
-    db:
-        image: postgres:10-alpine
-        environment:
-            POSTGRES_DB: app
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: 12345
-            GET_HOSTS_FROM: dns
-        ports:
-            - "5432:5432"
-        volumes:
-            - /datadir:/var/lib/postgresql/data
-volumes:
-    datadir:
+#     db:
+#         image: postgres:10-alpine
+#         environment:
+#             POSTGRES_DB: app
+#             POSTGRES_USER: postgres
+#             POSTGRES_PASSWORD: 12345
+#             GET_HOSTS_FROM: dns
+#         ports:
+#             - "5432:5432"
+#         volumes:
+#             - /datadir:/var/lib/postgresql/data
+# volumes:
+#     datadir:
 
 
 
