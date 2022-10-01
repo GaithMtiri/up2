@@ -8,8 +8,8 @@ services:
         container_name: django_book_website
         ports:
             - "8010:8010"
-        volumes:
-            - .:/app
+        # volumes:
+        #     - .:/app
         command: >
             sh -c "python manage.py migrate
                   python manage.py runserver 0.0.0.0:8010"
