@@ -16,3 +16,5 @@ on kubernetes:
 
 
 this will generate 2 deployments and 2 services (shared DB and web app)
+
+to deploy a new user 

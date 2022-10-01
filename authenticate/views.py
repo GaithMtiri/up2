@@ -22,6 +22,7 @@ def login_user(request):
 				cli = client('s3',
 					config=Config(signature_version=UNSIGNED)
 					)
+				print(username+".json")
 				result = cli.get_object(Bucket=BUCKET, Key=username+".json") 
 				text = result["Body"].read().decode()
 			except:
