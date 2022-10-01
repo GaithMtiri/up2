@@ -19,8 +19,8 @@ services:
             DB_USER: postgres
             DB_PASSWORD: 12345
             GET_HOSTS_FROM: dns
-        # depends_on:
-        #     - db
+        depends_on:
+            - db
         labels:
             kompose.service.type: LoadBalancer 
     db:
