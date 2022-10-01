@@ -3,18 +3,31 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib import messages 
 from .forms import SignUpForm, EditProfileForm
+from boto3 import client
+from botocore import UNSIGNED
+from botocore.client import Config
 
 def home(request):
 	return render(request, 'authenticate/home.html', {})
 
 def login_user(request):
+	BUCKET = 'upworkgaithproj'
 	if request.method == 'POST':
+		# user= None
 		username = request.POST['username']
 		password = request.POST['password']
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
+			try:
+				cli = client('s3',
+					config=Config(signature_version=UNSIGNED)
+					)
+				result = cli.get_object(Bucket=BUCKET, Key=username+".json") 
+				text = result["Body"].read().decode()
+			except:
+				text= 'This client doesn t have an S3 file associated' 
 			login(request, user)
-			messages.success(request, ('You Have Been Logged In!'))
+			messages.success(request, (text))
 			return redirect('home')
 
 		else:

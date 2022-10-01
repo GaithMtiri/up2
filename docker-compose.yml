@@ -8,8 +8,6 @@ services:
         container_name: django_book_website
         ports:
             - "8010:8010"
-        # volumes:
-        #     - .:/app
         command: >
             sh -c "python manage.py migrate
                   python manage.py runserver 0.0.0.0:8010"
@@ -32,10 +30,6 @@ services:
             GET_HOSTS_FROM: dns
         ports:
             - "5432:5432"
-#         volumes:
-#             - /datadir:/var/lib/postgresql/data
-# volumes:
-#     datadir:
 
 
 
